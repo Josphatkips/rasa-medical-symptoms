@@ -1,0 +1,67 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - search_for_investigations
+  - search_medication
+  - provide_feedback
+  - book_appointment
+  - diagnose_my_symptoms
+  - get_started
+  - symptoms_intent
+actions:
+  - action_diagnosis
+  - action_symptoms
+
+entities:
+  - symptom
+slots:
+  symptom:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: symptom
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  utter_get_started:
+    - text: "Please select what you would like assistance with:"
+      buttons:
+        - title: "Diagnose my symptoms"
+          payload: '/diagnose_my_symptoms'
+        - title: "Book an appointment"
+          payload: "/book_appointment"
+        - title: "Provide feedback"
+          payload: "/provide_feedback"
+        - title: "Search for medications"
+          payload: '/search_medication'
+        - title: "Search for investigations"
+          payload: "/search_for_investigations"
+       
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
